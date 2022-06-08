@@ -10,12 +10,12 @@ By the end of the lab, all tests in the report should be passing.
 */
 
 const studentInformation = {
-  name: "FILL_IN_YOUR_NAME_HERE",
-  grade: "FILL_IN_YOUR_GRADE_HERE",
-  advisor: "FILL_IN_YOUR_ADVISOR_HERE",
-  major: "FILL_IN_YOUR_MAJOR_HERE",
-  graduationYear: "FILL_IN_YOUR_GRADUATION_YEAR_HERE",
-  imageUrl: "ADD_A_URL_TO_ANY_IMAGE_HERE",
+  name: "Esteban Ayala",
+  grade: "Sophmore",
+  advisor: "Darryl Nguyen",
+  major: "Computer Science",
+  graduationYear: "2024",
+  imageUrl: "images/EstebanAyala.jpg",
 }
 
 let semester = "Spring Semester"
@@ -60,7 +60,18 @@ const gpaPointsLookup = {
  */
 const dropdownEl = document.querySelector(".dropdown")
 // ADD more query selectors here
-
+const name = document.querySelector("#student-name")
+const advisor = document.querySelector("#student-advisor")
+const major = document.querySelector("#student-major")
+const gradeLvl = document.querySelector("#student-grade-level")
+const image = document.querySelector("#student-image")
+const semDropdown = document.querySelector(".semester-dropdown")
+const dropButton = document.querySelector(".dropdown-button")
+const dropLabel = document.querySelector(".dropdown-label")
+const fallSem = document.querySelector("#fall-semester")
+const springSem = document.querySelector("#spring-semester")
+const winterSem = document.querySelector("#winter-semester")
+const reportTable = document.querySelector("#report-card-table")
 /**
  * SOLUTIONS FOR STUDENT INFO DOM UPDATES
  */
@@ -72,6 +83,7 @@ const dropdownEl = document.querySelector(".dropdown")
  */
 function updateStudentName(studentName) {
   // code goes here
+  document.getElementById("student-name").innerHTML = studentName;
 }
 
 /**
@@ -81,6 +93,7 @@ function updateStudentName(studentName) {
  */
 function updateStudentGradeLevel(studentGradeLevel) {
   // code goes here
+  document.getElementById("student-grade-level").innerHTML = studentGradeLevel;
 }
 
 /**
@@ -90,6 +103,7 @@ function updateStudentGradeLevel(studentGradeLevel) {
  */
 function updateStudentAdvisor(studentAdvisor) {
   // code goes here
+  document.getElementById("student-advisor").innerHTML = studentAdvisor;
 }
 
 /**
@@ -99,6 +113,7 @@ function updateStudentAdvisor(studentAdvisor) {
  */
 function updateMajor(studentMajor) {
   // code goes here
+  document.getElementById("student-major").innerHTML = studentMajor;
 }
 
 /**
@@ -108,6 +123,7 @@ function updateMajor(studentMajor) {
  */
 function updateStudentGraduationYear(graduationYear) {
   // code goes here
+  document.getElementById("student-graduation-year").innerHTML = graduationYear;
 }
 
 /**
@@ -118,6 +134,7 @@ function updateStudentGraduationYear(graduationYear) {
  */
 function updateStudentImage(imageUrl) {
   // code goes here
+  document.getElementById("student-image").src = imageUrl;
 }
 
 /**
@@ -141,7 +158,17 @@ function populateStudentInfo(studentInformationObject) {
  */
 function addReportCardHeaders(reportCardTableElement) {
   // update the code here
-  reportCardTableElement.innerHTML += ``
+  // 6 h4s for the columns
+  reportCardTableElement.innerHTML += `
+          <div class="table-row table-header">
+         <h4 class="code-col">Code</h4>
+          <h4 class="name-col">Name</h4>
+          <h4 class="sem-col">Semester</h4>
+          <h4 class="cred-col">Credits</h4>
+          <h4 class="lett-col">Letter</h4>
+          <h4 class="pts-col">Points</h4>
+  </div>
+  `
 }
 
 /**
@@ -155,9 +182,17 @@ function addCourseRowToReportCard(reportCardTableElement, course, rowNum) {
   // update the code here with information about the course passed to this function
   reportCardTableElement.innerHTML += `
   <div class="table-row course-row row-${rowNum + 1} ${rowNum % 2 === 1 ? "odd" : "even"}">
-
+  <h4 class="code-col">${course.code}</h4>
+  <h4 class="name-col">${course.name}</h4>
+  <h4 class="sem-col">${course.sem}</h4>
+  <h4 class="cred-col">${course.cred}</h4>
+  <h4 class="let-col gpa">${course.let}</h4>
+  <h4 class="pts-col">${course.pts}</h4>
   </div>
   `
+
+  
+  
 }
 
 /**
@@ -269,6 +304,6 @@ function calculateSemesterGpa(reportCardTableElement) {
   // code goes here
 }
 
-window.onload = function () {
+window.onload = function (populateStudentInfo) {
   // execute your functions here to make sure they run as soon as the page loads
 }
